@@ -6,7 +6,7 @@ def listar_cursos():
 
         cursor.execute("SELECT id, nome FROM cursos")
         for curso in cursor.fetchall():
-            print(f"Curso[0] - {curso[1]}")
+            print(f"{curso[0]} - {curso[1]}")
 
         conn.close()
     except Exception as e:
@@ -16,7 +16,7 @@ def listar_cursos():
 def inserir_alunos():
     listar_cursos()
 
-    nome = input("Nome do aluno: ")
+    nome = input("Nome do aluno: ").capitalize()
 
     try:
         conn, cursor = conectar()
@@ -24,7 +24,7 @@ def inserir_alunos():
         idade = int(input("Idade: "))
         curso_id = int(input("ID do curso: "))
 
-        cursor.execute("SELECT if FROM cursos WHERE id = ?", (curso_id))
+        cursor.execute("SELECT id FROM cursos WHERE id = ?", (curso_id,))
         if cursor.fetchone():
             cursor.execute("""
                            INSERT INTO alunos (nome, idade, curso_id)
