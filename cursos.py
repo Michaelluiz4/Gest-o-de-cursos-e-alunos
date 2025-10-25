@@ -14,10 +14,11 @@ def inserir_cursos():
                               INSERT INTO cursos (nome, carga_horaria, nivel)
                               VALUES (?, ?, ?)
                               """, (nome_curso, carga_horaria, nivel))
+            print("\033[32mCurso cadastrado com sucesso.\033[0m")
         else:
-            print("Nível incorreto. ")
+            print("\033[31mERRO.\033[0m Nível incorreto. ")
     except ValueError:
-        print("Carga horária invalída. ")
+        print("\033[31mERRO.\033[0m Carga horária invalída. ")
 
     conn.commit()
     conn.close()
